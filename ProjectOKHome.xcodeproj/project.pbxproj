@@ -13,7 +13,9 @@
 		75ED9C042702C53500BF750A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75ED9C022702C53500BF750A /* Main.storyboard */; };
 		75ED9C062702C53800BF750A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75ED9C052702C53800BF750A /* Assets.xcassets */; };
 		75ED9C092702C53800BF750A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75ED9C072702C53800BF750A /* LaunchScreen.storyboard */; };
-		75ED9C152702E20500BF750A /* RepoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED9C142702E20500BF750A /* RepoCollectionViewCell.swift */; };
+		75ED9C1B2702E26E00BF750A /* RepoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED9C192702E26E00BF750A /* RepoCollectionViewCell.swift */; };
+		75ED9C1C2702E26E00BF750A /* RepoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75ED9C1A2702E26E00BF750A /* RepoCollectionViewCell.xib */; };
+		75ED9C27270301C800BF750A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED9C26270301C800BF750A /* Repository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		75ED9C052702C53800BF750A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75ED9C082702C53800BF750A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75ED9C0A2702C53800BF750A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75ED9C142702E20500BF750A /* RepoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCollectionViewCell.swift; sourceTree = "<group>"; };
+		75ED9C192702E26E00BF750A /* RepoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCollectionViewCell.swift; sourceTree = "<group>"; };
+		75ED9C1A2702E26E00BF750A /* RepoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoCollectionViewCell.xib; sourceTree = "<group>"; };
+		75ED9C26270301C800BF750A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				75ED9BFC2702C53500BF750A /* AppDelegate.swift */,
+				75ED9C202703018600BF750A /* Model */,
 				75ED9BFE2702C53500BF750A /* SceneDelegate.swift */,
-				75ED9C002702C53500BF750A /* ViewController.swift */,
 				75ED9C122702E0E500BF750A /* MainView */,
 				75ED9C052702C53800BF750A /* Assets.xcassets */,
 				75ED9C072702C53800BF750A /* LaunchScreen.storyboard */,
@@ -72,18 +76,28 @@
 		75ED9C122702E0E500BF750A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				75ED9C132702E0F500BF750A /* CollectionViewGit */,
+				75ED9C132702E0F500BF750A /* RepoCollectionViewCell */,
 				75ED9C022702C53500BF750A /* Main.storyboard */,
+				75ED9C002702C53500BF750A /* ViewController.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
 		};
-		75ED9C132702E0F500BF750A /* CollectionViewGit */ = {
+		75ED9C132702E0F500BF750A /* RepoCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				75ED9C142702E20500BF750A /* RepoCollectionViewCell.swift */,
+				75ED9C192702E26E00BF750A /* RepoCollectionViewCell.swift */,
+				75ED9C1A2702E26E00BF750A /* RepoCollectionViewCell.xib */,
 			);
-			path = CollectionViewGit;
+			path = RepoCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		75ED9C202703018600BF750A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75ED9C26270301C800BF750A /* Repository.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75ED9C1C2702E26E00BF750A /* RepoCollectionViewCell.xib in Resources */,
 				75ED9C092702C53800BF750A /* LaunchScreen.storyboard in Resources */,
 				75ED9C062702C53800BF750A /* Assets.xcassets in Resources */,
 				75ED9C042702C53500BF750A /* Main.storyboard in Resources */,
@@ -156,8 +171,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75ED9C152702E20500BF750A /* RepoCollectionViewCell.swift in Sources */,
+				75ED9C1B2702E26E00BF750A /* RepoCollectionViewCell.swift in Sources */,
 				75ED9C012702C53500BF750A /* ViewController.swift in Sources */,
+				75ED9C27270301C800BF750A /* Repository.swift in Sources */,
 				75ED9BFD2702C53500BF750A /* AppDelegate.swift in Sources */,
 				75ED9BFF2702C53500BF750A /* SceneDelegate.swift in Sources */,
 			);
