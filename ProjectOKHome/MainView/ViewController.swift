@@ -9,20 +9,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var RepoCollectionView: UICollectionView!
+    let Cell = "RepoCollectionViewCell"
     
-    let repoCellId = "RepoCollectionViewCell"
+    @IBOutlet weak var RepoCollectionView: UICollectionView!
     
     var repositories = [Repository]()
     
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
  
+        RepoCollectionView.dataSource = self
+        RepoCollectionView.delegate = self
         
         // register repoCellId to the RepoCollectionView
-        let nibCell = UINib(nibName: repoCellId, bundle: nil)
-        RepoCollectionView.register(nibCell, forCellWithReuseIdentifier: repoCellId)
+        let nibCell = UINib(nibName: Cell, bundle: nil)
+        RepoCollectionView.register(nibCell, forCellWithReuseIdentifier: Cell)
 
         // init repo
         for _ in 1...10{
@@ -39,8 +41,6 @@ class ViewController: UIViewController {
             
         }
         RepoCollectionView.reloadData()
-        
-        super.viewDidLoad()
     
 
     }
@@ -52,34 +52,27 @@ class ViewController: UIViewController {
 
 extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource{
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return repositories.count
     }
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "repoCellId", for: indexPath) as! RepoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell, for: indexPath) as! RepoCollectionViewCell
         
         let repository = repositories[indexPath.row]
         
         cell.name.text = repository.name
         cell.logoImage.image = UIImage(named: repository.image!)
-        
         return cell
     }
     
-    
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let repository = repositories[indexPath.row]
+        
+        print(indexPath.row)
+    }
     
     
 }
