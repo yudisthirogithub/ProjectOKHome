@@ -32,8 +32,8 @@ class ViewController: UIViewController {
             
             repos.image = "test"
             repos.name = "Sketch Swift"
-            repos.fork = 10
-            repos.star = 7
+            repos.fork = "10"
+            repos.star = "7"
             repositories.append(repos)
             
            
@@ -64,6 +64,9 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
         
         cell.name.text = repository.name
         cell.logoImage.image = UIImage(named: repository.image!)
+        cell.forkNumber.text = repository.fork
+        cell.starNumber.text = repository.star
+        
         return cell
     }
     
@@ -72,9 +75,20 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
         let repository = repositories[indexPath.row]
         
         print(indexPath.row)
+        
+        performSegue(withIdentifier: "goToSecondView", sender: self)
+        
+        
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSecondView" {
+            guard let vc = segue.destination as? SecondViewController else { return }
+            
+            
+        }
+    }
+
 }
 
 

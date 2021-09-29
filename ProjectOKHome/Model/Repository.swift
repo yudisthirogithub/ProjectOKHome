@@ -10,8 +10,8 @@ import Foundation
 class Repository {
     var image: String?
     var name: String?
-    var fork: Int?
-    var star: Int?
+    var fork: String?
+    var star: String?
     
     required init() {}
 }

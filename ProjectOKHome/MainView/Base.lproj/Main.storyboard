@@ -56,11 +56,22 @@
                     </view>
                     <connections>
                         <outlet property="RepoCollectionView" destination="z4j-qA-enM" id="fcZ-1h-pJv"/>
+                        <segue destination="fK8-L9-2gQ" kind="show" identifier="goToSecondView" id="fLP-Un-xCe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-484" y="84"/>
+        </scene>
+        <!--SecondViewStoryboard-->
+        <scene sceneID="uIl-l1-NTt">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SecondViewVC" storyboardName="SecondViewStoryboard" id="fK8-L9-2gQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jTn-QR-hAy"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOg-l7-OeX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="-129"/>
         </scene>
     </scenes>
     <resources>
