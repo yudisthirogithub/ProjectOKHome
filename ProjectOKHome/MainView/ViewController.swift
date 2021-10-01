@@ -26,6 +26,17 @@ class ViewController: UIViewController {
         let nibCell = UINib(nibName: Cell, bundle: nil)
         RepoCollectionView.register(nibCell, forCellWithReuseIdentifier: Cell)
 
+        Services.shared.getResults(repositoryName: "Swift") { result in
+            switch result {
+            case .success(let results):
+            print("success")
+            print(results)
+            case .failure(let error):
+            print("error nih")
+            print(error)
+            }
+        }
+        
         // init repo
         for _ in 1...10{
             let repos = Repository()
@@ -84,6 +95,7 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToSecondView" {
             guard let vc = segue.destination as? SecondViewController else { return }
+            
             
             
         }
