@@ -7,9 +7,17 @@
 
 import Foundation
 
-struct ResultsResponse: Decodable {
+struct ResultsResponse: Codable {
     
     let items : [Results]
+//    let incomplete_results: Bool
+//    let total_count: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case items = "items"
+//        case incomplete_results = "incomplete_results"
+//        case total_count = "total_count"
+    }
     
 }
 

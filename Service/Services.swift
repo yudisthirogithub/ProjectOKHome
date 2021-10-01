@@ -14,7 +14,7 @@ class Services {
     // url : https://api.github.com/search/repositories?q=ProjectOKHOME
     
     
-    func getResults(repositoryName: String, completed: @escaping (Result<Results, ErrorMessages>) -> Void){
+    func getResults(repositoryName: String, completed: @escaping (Result<ResultsResponse, ErrorMessages>) -> Void){
         
         let urlString = "https://api.github.com/search/repositories?q=\(repositoryName)"
         
@@ -31,15 +31,16 @@ class Services {
             }
             
             guard let data = data else {completed(.failure(.invalidData))
+                
                 return
             }
             
             //problemnya d sini
             do {
                 let deconder = JSONDecoder()
-                deconder.keyDecodingStrategy = .convertFromSnakeCase
+//                deconder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                let results = try deconder.decode(Results.self, from: data)
+                let results = try deconder.decode(ResultsResponse.self, from: data)
                 completed(.success(results))
                 
             } catch {
