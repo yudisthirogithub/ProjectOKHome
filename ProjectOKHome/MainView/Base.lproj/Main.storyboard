@@ -61,6 +61,7 @@
                     </view>
                     <connections>
                         <outlet property="RepoCollectionView" destination="z4j-qA-enM" id="fcZ-1h-pJv"/>
+                        <outlet property="searchRepo" destination="jGC-4G-XcY" id="Smj-Ie-0be"/>
                         <segue destination="fK8-L9-2gQ" kind="show" identifier="goToSecondView" id="fLP-Un-xCe"/>
                     </connections>
                 </viewController>

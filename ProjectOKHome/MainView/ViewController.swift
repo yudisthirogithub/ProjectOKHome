@@ -7,13 +7,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     
-    let Cell = "RepoCollectionViewCell"
+    
+    @IBOutlet weak var searchRepo: UISearchBar!
     
     @IBOutlet weak var RepoCollectionView: UICollectionView!
     
-    var repositories = [Repository]()
+    var changeThisIntoAPIData = [Repository]()
+    
+    let Cell = "RepoCollectionViewCell"
+    
+    var filteredData : [Repository]!
     
     
     override func viewDidLoad() {
@@ -22,6 +27,9 @@ class ViewController: UIViewController {
         RepoCollectionView.dataSource = self
         RepoCollectionView.delegate = self
         
+        searchRepo.delegate = self
+        
+        
         // register repoCellId to the RepoCollectionView
         let nibCell = UINib(nibName: Cell, bundle: nil)
         RepoCollectionView.register(nibCell, forCellWithReuseIdentifier: Cell)
@@ -29,32 +37,34 @@ class ViewController: UIViewController {
         Services.shared.getResults(repositoryName: "Swift") { result in
             switch result {
             case .success(let results):
-            print("success")
             print(results)
             case .failure(let error):
-            print("error nih")
             print(error)
             }
         }
         
+        
+        
         // init repo
-        for _ in 1...10{
+        for _ in 0...9{
             let repos = Repository()
             
             repos.image = "test"
             repos.name = "Sketch Swift"
             repos.fork = "10"
             repos.star = "7"
-            repositories.append(repos)
-            
-           
-            // Do any additional setup after loading the view.
+            changeThisIntoAPIData.append(repos)
             
         }
+        filteredData = changeThisIntoAPIData
         RepoCollectionView.reloadData()
     
+        
+
 
     }
+    
+    
     
 
 
@@ -64,14 +74,14 @@ class ViewController: UIViewController {
 extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return repositories.count
+        return filteredData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell, for: indexPath) as! RepoCollectionViewCell
         
-        let repository = repositories[indexPath.row]
+        let repository = filteredData[indexPath.row]
         
         cell.name.text = repository.name
         cell.logoImage.image = UIImage(named: repository.image!)
@@ -83,7 +93,7 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let repository = repositories[indexPath.row]
+        let repository = filteredData[indexPath.row]
         
         print(indexPath.row)
         
@@ -92,6 +102,7 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
         
     }
     
+    //MARK Segue to SecondViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToSecondView" {
             guard let vc = segue.destination as? SecondViewController else { return }
@@ -100,6 +111,22 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
             
         }
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = []
+        
+        if searchText == ""{
+            filteredData = changeThisIntoAPIData
+        }else{
+            for repo in changeThisIntoAPIData {
+                if repo.name!.lowercased().contains(searchText.lowercased()){
+                    filteredData.append(repo)
+                }
+            }
+        }
+        self.RepoCollectionView.reloadData()
+    }
+    
 
 }
 
